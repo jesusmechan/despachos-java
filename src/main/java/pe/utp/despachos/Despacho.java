@@ -7,9 +7,16 @@ public class Despacho {
     private String estado = "PENDIENTE";
 
     public Despacho(String codigo, String cliente, String destino) {
+        if (esVacio(codigo) || esVacio(cliente) || esVacio(destino)) {
+            throw new IllegalArgumentException("codigo, cliente y destino son obligatorios");
+        }
         this.codigo = codigo;
         this.cliente = cliente;
         this.destino = destino;
+    }
+
+    private static boolean esVacio(String valor) {
+        return valor == null || valor.isBlank();
     }
 
     public String getCodigo() { return codigo; }
